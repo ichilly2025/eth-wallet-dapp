@@ -1,0 +1,11 @@
+// Git clone
+git clone git@github.com:ichilly2025/eth-wallet-dapp.git
+cd eth-wallet-dapp
+
+// Setup HardHat project
+npm init -y
+npm install --save-dev hardhat@2.26.3
+npx hardhat
+npx hardhat compile
+npx hardhat test
+npx hardhat ignition deploy ignition/modules/Lock.js

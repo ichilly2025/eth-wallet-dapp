@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Sepolia DApp</title>
+    <style>
+        body { font-family: Arial; max-width: 800px; margin: 2rem auto; padding: 0 1rem; }
+        .container { padding: 2rem; border: 1px solid #ddd; border-radius: 8px; }
+        button { padding: 0.8rem 1.5rem; font-size: 1rem; cursor: pointer; background: #007bff; color: white; border: none; border-radius: 4px; }
+        button:disabled { background: #ccc; cursor: not-allowed; }
+        .status { margin: 1rem 0; padding: 1rem; border-radius: 4px; background: #f8f9fa; }
+        .balance { font-size: 1.2rem; font-weight: bold; color: #28a745; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sepolia 合约余额查询</h1>
+        
+        <div class="status" id="status">未连接钱包</div>
+        
+        <button id="connectBtn">连接 MetaMask</button>
+        <button id="disconnectBtn" disabled>断开连接</button>
+        
+        <div class="status" style="margin-top: 2rem;">
+            <p>当前账户: <span id="account">--</span></p>
+            <p>账户 ETH 余额: <span id="ethBalance">--</span> ETH</p>
+            <p>合约 ETH 余额: <span id="contractBalance" class="balance">--</span> ETH</p>
+        </div>
+        
+        <div style="margin-top: 2rem;">
+            <h3>向合约转账 ETH</h3>
+            <input type="number" id="amount" placeholder="转账金额 (ETH)" step="0.001" value="0.001">
+            <button id="transferBtn" disabled>转账到合约</button>
+        </div>
+    </div>
+
+    <!-- 引入 ethers.js -->
+    <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+    <script>
+        // 检查 ethers 是否加载成功
+        if (typeof ethers === 'undefined') {
+            console.error('ethers.js 加载失败');
+            document.getElementById('status').textContent = 'ethers.js 加载失败，请检查网络连接';
+            document.getElementById('status').style.background = '#f8d7da';
+        } else {
+            console.log('ethers.js 加载成功，版本:', ethers.version);
+        }
+    </script>
+    <script src="app.js"></script>
+</body>
+</html>
